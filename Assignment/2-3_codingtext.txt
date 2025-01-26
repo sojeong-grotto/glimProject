@@ -1,0 +1,31 @@
+#include <string>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+int solution(int a, int b, int c, int d) {
+    int answer = 0;
+    vector<int> vcDice = {a, b, c ,d};
+    sort(vcDice.begin(), vcDice.end());
+    if (vcDice[0] == vcDice[3]) {
+        answer = 1111 * vcDice[0];
+    } else if (vcDice[0] == vcDice[2]) {
+        answer = (10 * vcDice[0] + vcDice[3]) * (10 * vcDice[0] + vcDice[3]);
+    } else if (vcDice[1] == vcDice[3]) {
+        answer = (10 * vcDice[1] + vcDice[0]) * (10 * vcDice[1] + vcDice[0]);
+    } else if (vcDice[0] == vcDice[1]) {
+        if (vcDice[2] == vcDice[3]) {
+            answer = (vcDice[0] + vcDice[2]) * abs(vcDice[0] - vcDice[2]);
+        } else {
+            answer = vcDice[2] * vcDice[3];
+        }
+    } else if (vcDice[1] == vcDice[2]) {
+        answer = vcDice[0] * vcDice[3];
+    } else if (vcDice[2] == vcDice[3]) {
+        answer = vcDice[0] * vcDice[1];
+    } else {
+        answer = vcDice[0];
+    }
+    return answer;
+}
